@@ -198,7 +198,11 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
-        error_page 502 /bad.html #intentionally bad to trigger 404
+        error_page 502 =503 @magento_loading;
+	location @magento_loading {
+	    return 503 "Magento unavailable";
+	}
+	
 	location / {
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
@@ -236,7 +240,11 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
-        error_page 502 /bad.html #intentionally bad to trigger 404
+        error_page 502 =503 @magento_loading;
+	location @magento_loading {
+	    return 503 "Magento unreachable";
+	}
+	
 	location / {
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
