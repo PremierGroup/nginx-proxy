@@ -200,7 +200,7 @@ server {
 
         error_page 502 =503 @magento_loading;
 	location @magento_loading {
-	    return 503 "Magento unavailable";
+	    return 503;
 	}
 	
 	location / {
@@ -242,7 +242,7 @@ server {
 
         error_page 502 =503 @magento_loading;
 	location @magento_loading {
-	    return 503 "Magento unreachable";
+	    return 503;
 	}
 	
 	location / {
