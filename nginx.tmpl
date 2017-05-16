@@ -198,9 +198,9 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
-        error_page 502 =503 @magento_loading;
+        error_page 502 =500 @magento_loading;
 	location @magento_loading {
-	    return 503;
+	    return 500;
 	}
 	
 	location / {
@@ -240,9 +240,9 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 
-        error_page 502 =503 @magento_loading;
+        error_page 502 =500 @magento_loading;
 	location @magento_loading {
-	    return 503;
+	    return 500;
 	}
 	
 	location / {
