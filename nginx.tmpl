@@ -197,11 +197,6 @@ server {
 	{{ else if (exists "/etc/nginx/vhost.d/default") }}
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
-
-        error_page 502 =500 @magento_loading;
-	location @magento_loading {
-	    return 500;
-	}
 	
 	location / {
 		{{ if eq $proto "uwsgi" }}
@@ -239,11 +234,6 @@ server {
 	{{ else if (exists "/etc/nginx/vhost.d/default") }}
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
-
-        error_page 502 =500 @magento_loading;
-	location @magento_loading {
-	    return 500;
-	}
 	
 	location / {
 		{{ if eq $proto "uwsgi" }}
