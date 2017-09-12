@@ -215,10 +215,6 @@ server {
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
 	}
-	
-        location /health/aws {
-                try_files /tmp/readymarkers/mage.ready.html	
-        }
 }
 
 {{ end }}
@@ -255,10 +251,6 @@ server {
                 {{ else if (exists "/etc/nginx/vhost.d/default_location") }}
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
-        }
-	
-        location /health/aws {
-	        try_files /tmp/readymarkers/mage.ready.html	
         }
 }
 
