@@ -215,14 +215,6 @@ server {
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
 	}
-	
-	location /health/aws {
-	       {{ if (not exists "/tmp/readymarkers/mage.ready") }}
-	       return 503;
-	       {{ else }}
-	       return 301 $scheme://$host;
-	       {{ end }}
-	}
 }
 
 {{ end }}
@@ -259,14 +251,6 @@ server {
                 {{ else if (exists "/etc/nginx/vhost.d/default_location") }}
                 include /etc/nginx/vhost.d/default_location;
                 {{ end }}
-	}
-	
-	location /health/aws {
-	       {{ if (not exists "/tmp/readymarkers/mage.ready") }}
-	       return 503;
-	       {{ else }}
-	       return 301 $scheme://$host;
-	       {{ end }}
 	}
 }
 
