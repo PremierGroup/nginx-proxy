@@ -235,17 +235,6 @@ server {
 	include /etc/nginx/vhost.d/default;
 	{{ end }}
 	
-	# All AWS Health Checks from the ELBs arrive at the default server.
-        # Forward these requests on the appropriate configuration on this host.
-        location /health-check/ {
-                rewrite ^/health-check/(?<domain>[a-zA-Z0-9\.]+) /api/v1/status break;
-                # Lie about incoming protocol, to avoid the backend issuing a 301 redirect from insecure->secure,
-                #  which would not be considered successful.
-                proxy_set_header X-Forwarded-Proto 'https';
-                proxy_set_header "Host" $domain;
-                proxy_pass http://127.0.0.1;
-        }
-	
 	location / {
 		{{ if eq $proto "uwsgi" }}
 		include uwsgi_params;
